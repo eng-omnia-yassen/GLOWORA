@@ -1,0 +1,305 @@
+@use './../../public/assets/css/scss/abstracts/' as*;
+
+nav.navbar{
+  @include position($p:fixed,$t:10px,$l:50%);
+  @include distance(95%);
+  background-color: rgba(255, 248, 242,.6);
+  border-radius: 50px;
+  @include respond(350){
+    background-color: rgba(255, 248, 242,.8);
+  }
+  @include respond(1050){
+    background-color: rgba(255, 248, 242,.6);
+  }
+  transform: translateX(-50%);
+
+  .navbar-brand{
+    width: 13%;
+    margin-left: 18px;
+    @include respond(350){
+      width: 35%;
+      margin-left: 0px;
+    }
+    @include respond(650){
+      width: 25%;
+    }
+    @include respond(850){
+      width: 18%;
+    }
+    @include respond(1050){
+      width: 15%;
+    }
+  }
+
+  .navbar-toggler{
+    width: 42px;
+    height: 42px;
+    border: 2px solid $Dusty-Rose;
+    @include respond(350){
+      @include flex($rg:6px,$jc:center,$ai:center,$fd:column);
+    }
+    &:focus{
+      box-shadow: none;
+    }
+    span{
+      width: 25px;
+      background-color: $Dusty-Rose;
+      height: 2px;
+    }
+    @include respond(1050){
+      display: none;
+    }
+  }
+
+  .navbar-nav{
+    padding:10px 10px;
+    column-gap: 10px;
+    @include respond(350){
+      column-gap: 0;
+      row-gap: 10px;
+    }
+    .nav-item{
+      font-size: 18px;
+      .nav-link{
+        color: #fff;
+        border-radius: 20px;
+        transition-duration: .5s;
+        @include respond(350){
+          width: 50%;
+          margin: auto;
+          text-align: center;
+        }
+         @include respond(1050){
+          width: initial;
+        }
+        &.active,
+        &:hover{
+          background-color: $Dusty-Rose;
+          color: $Berry;
+          i{
+            color: $Berry;
+          }
+        }
+        i{
+          color: #fff;
+        }
+        img{
+          width: 20px;
+        }
+      }
+      &.dropdown{
+
+        .dropdown-menu{
+          padding-inline: 10px;
+          background-color: $Soft-Pink;
+          &.show{
+            @include flex($rg:5px,$fd:column);
+          }
+          .dropdown-item{
+            border-radius: 20px;
+            color: $Berry;
+            img{
+              width: 20px;
+            }
+            &:hover,
+            &.active{
+              color: #fff;
+              background-color: $Dusty-Rose;
+            }
+            transition-duration: .5s;
+          }
+        }
+      }
+
+
+    }
+    &.mood{
+      @include respond(350){
+          flex-direction: row;
+
+      }
+      .special{
+        img,i{
+          padding: 10px;
+          height: 40px;
+          width: 40px;
+        }
+        @include respond(350){
+          margin: auto;
+          text-align: center;
+        }
+        transition-duration: .5s;
+        border-radius: 50%;
+        &:hover,
+        &.active{
+          background-color: $Dusty-Rose;
+          color: $Berry;
+        }
+      }
+    }
+
+  }
+}
+header{
+  &.light{
+    background-image: url("../../public/assets/images/header-light.jpg");
+  }
+  &.dark{
+    background-image: url("../../public/assets/images/header-dark.jpg");
+  }
+  @include backGround(center,no-repeat,cover);
+  .container{
+    @include flex($ai:center);
+    .content{
+      width: 50%;
+      @include respond(350){
+        width: 80%;
+      }
+      @include respond(850){
+        width: 50%;
+      }
+      h5{
+        @include respond(350){
+          font-size: 16px;
+        }
+        @include respond(350){
+          font-size: 20px;
+        }
+      }
+      h1{
+        font-size: 60px;
+        color: #fff;
+        @include respond(350){
+          font-size: 35px;
+        }
+        @include respond(450){
+          font-size: 45px;
+        }
+        @include respond(1050){
+          font-size: 60px;
+        }
+      }
+      p{
+        color: #fff;
+      }
+      button{
+        background-color: $Dusty-Rose;
+        border-radius: 30px;
+        padding: 10px 15px;
+        transition-duration: .5s;
+        a{
+          transition-duration: .5s;
+          color: $Berry;
+          font-size: 18px;
+          i{
+            transition-duration: .5s;
+          }
+        }
+
+        &:hover{
+          background-color: $Cream;
+          a{
+            color: $Berry;
+            i{
+              padding-left: 10px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+#Gallery{
+  background-color: $Cream;
+  nav{
+    column-gap: 10px;
+      span{
+        background-color: $Dusty-Rose;
+        border-bottom: 1px solid ;
+        flex-grow: 1;
+      }
+    .nav-tabs{
+      border-bottom: 0;
+      column-gap: 10px;
+      .nav-link{
+        background-color: $Soft-Pink;
+        border-radius: 20px;
+        color: $Berry;
+        transition-duration: .5s;
+        &:hover,
+        &.active{
+          color: #fff;
+          background-color: $Dusty-Rose;
+        }
+        img{
+          @include distance(15px,15px)
+        }
+
+      }
+    }
+}
+.tab-pane{
+  .item{
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    // background-color: $Berry;
+    >img{
+      margin: auto;
+      transition-duration: .5s;
+      transform: scale(1);
+    }
+
+    .layout{
+      @include distance($h:100%);
+      @include flex($ai:end);
+      background-color:rgba(255, 248, 242,.2);
+      mask-image: linear-gradient(
+        to top,
+        wight 0%,
+        transparent 100%
+     );
+     opacity: 0;
+     transform: scale(.5);
+     @include position($t:0,$l:0);
+     transition-duration: .5s;
+     img{
+       width: 25px;
+       height: 25px;
+      }
+      .text{
+        opacity: 0;
+        transform: translateX(-110%);
+      }
+    }
+    &:hover{
+      >img{
+        transform: scale(1.2);
+      }
+      .layout{
+        transition-delay: .5s;
+        opacity: 1;
+        transform: scale(1);
+        .text{
+          opacity: 1;
+          transform: translateX(0%);
+          transition-duration: 1s;
+          transition-delay: 1s;
+          .title{
+            color: $Berry;
+            font-weight: 700;
+            font-size: 18px;
+          }
+          .description{
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+      }
+
+    }
+  }
+
+    }
+}
