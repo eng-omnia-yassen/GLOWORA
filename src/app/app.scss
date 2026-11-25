@@ -1,15 +1,20 @@
 @use './../../public/assets/css/scss/abstracts/' as*;
 
 nav.navbar{
-  @include position($p:fixed,$t:10px,$l:50%);
+  @include position($p:fixed,$t:10px,$l:50%,$z:50);
   @include distance(95%);
   background-color: rgba(255, 248, 242,.6);
   border-radius: 50px;
+  padding:10px 15px;
+
   @include respond(350){
     background-color: rgba(255, 248, 242,.8);
   }
   @include respond(1050){
     background-color: rgba(255, 248, 242,.6);
+  }
+  &.scrolled{
+    background-color: rgba(255, 248, 242,.9);
   }
   transform: translateX(-50%);
 
@@ -52,7 +57,8 @@ nav.navbar{
   }
 
   .navbar-nav{
-    padding:10px 10px;
+
+
     column-gap: 10px;
     @include respond(350){
       column-gap: 0;
@@ -61,7 +67,7 @@ nav.navbar{
     .nav-item{
       font-size: 18px;
       .nav-link{
-        color: #fff;
+        color: $Berry;
         border-radius: 20px;
         transition-duration: .5s;
         @include respond(350){
@@ -75,71 +81,22 @@ nav.navbar{
         &.active,
         &:hover{
           background-color: $Dusty-Rose;
-          color: $Berry;
+          color: #fff;
           i{
-            color: $Berry;
+            color: #fff;
           }
         }
         i{
-          color: #fff;
+          color: $Berry;
         }
         img{
           width: 20px;
         }
       }
-      &.dropdown{
-
-        .dropdown-menu{
-          padding-inline: 10px;
-          background-color: $Soft-Pink;
-          &.show{
-            @include flex($rg:5px,$fd:column);
-          }
-          .dropdown-item{
-            border-radius: 20px;
-            color: $Berry;
-            img{
-              width: 20px;
-            }
-            &:hover,
-            &.active{
-              color: #fff;
-              background-color: $Dusty-Rose;
-            }
-            transition-duration: .5s;
-          }
-        }
-      }
-
-
     }
-    &.mood{
-      @include respond(350){
-          flex-direction: row;
-
-      }
-      .special{
-        img,i{
-          padding: 10px;
-          height: 40px;
-          width: 40px;
-        }
-        @include respond(350){
-          margin: auto;
-          text-align: center;
-        }
-        transition-duration: .5s;
-        border-radius: 50%;
-        &:hover,
-        &.active{
-          background-color: $Dusty-Rose;
-          color: $Berry;
-        }
-      }
-    }
-
   }
 }
+
 header{
   &.light{
     background-image: url("../../public/assets/images/header-light.jpg");
@@ -210,9 +167,62 @@ header{
     }
   }
 }
+
 #Gallery{
   background-color: $Cream;
+  .title{
+    text-align: center;
+    h6,p{
+      color: $Dusty-Rose;
+      font-size: 18px;
+      @include respond(350){
+        font-size: 12px;
+      }
+      @include respond(850){
+        font-size: 16px;
+      }
+    }
+    h2{
+      font-size: 60px;
+      color: $Berry;
+      @include respond(350){
+        font-size: 38px;
+      }
+      @include respond(850){
+        font-size: 50px;
+      }
+      @include respond(1050){
+        font-size: 50px;
+      }
+    }
+    img{
+      width: 35%;
+      @include respond(350){
+        width: 85%;
+      }
+      @include respond(450){
+        width: 75%;
+      }
+      @include respond(650){
+        width: 65%;
+      }
+      @include respond(850){
+        width: 55%;
+      }
+      @include respond(1050){
+        width: 45%;
+      }
+    }
+  }
+  .table-responsive{
   nav{
+    width: 100%;
+    @include respond(350){
+      width: max-content;
+    }
+    @include respond(850){
+      width: initial;
+    }
     column-gap: 10px;
       span{
         background-color: $Dusty-Rose;
@@ -238,68 +248,435 @@ header{
 
       }
     }
-}
-.tab-pane{
-  .item{
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    // background-color: $Berry;
-    >img{
-      margin: auto;
-      transition-duration: .5s;
-      transform: scale(1);
-    }
-
-    .layout{
-      @include distance($h:100%);
-      @include flex($ai:end);
-      background-color:rgba(255, 248, 242,.2);
-      mask-image: linear-gradient(
-        to top,
-        wight 0%,
-        transparent 100%
-     );
-     opacity: 0;
-     transform: scale(.5);
-     @include position($t:0,$l:0);
-     transition-duration: .5s;
-     img{
-       width: 25px;
-       height: 25px;
+  }
+  }
+  .tab-pane{
+  display: none;
+  opacity: 0;
+  transition-duration: .3s;
+  &.active{
+    display: block;
+  }
+  &.show{
+    opacity: 1;
+  }
+  .row{
+    row-gap: 15px;
+    .item{
+      height: 400px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      @include respond(350){
+        width: 280px;
+        margin: auto;
       }
-      .text{
-        opacity: 0;
-        transform: translateX(-110%);
+      @include respond(650){
+        width: initial;
+        height: 350px;
       }
-    }
-    &:hover{
+      @include respond(850){
+        height: 300px;
+      }
       >img{
-        transform: scale(1.2);
+        margin: auto;
+        transition-duration: .5s;
+        transform: scale(1);
       }
       .layout{
-        transition-delay: .5s;
-        opacity: 1;
-        transform: scale(1);
+        border-radius: 20px;
+        @include distance($h:100%);
+        @include flex($ai:end);
+        background-color:rgba(255, 248, 242,.2);
+        mask-image: linear-gradient(
+          to top,
+          wight 0%,
+          transparent 100%
+       );
+       opacity: 0;
+       transform: scale(.5);
+       @include position($t:0,$l:0);
+       transition-duration: .5s;
+       i{
+        opacity: 0;
+        cursor: pointer;
+        @include position($t:20px,$r:20px);
+        color: #fff;
+        @include distance(35px,35px);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0,.5);
+       }
+       img{
+         width: 25px;
+         height: 25px;
+        }
         .text{
-          opacity: 1;
-          transform: translateX(0%);
-          transition-duration: 1s;
-          transition-delay: 1s;
-          .title{
-            color: $Berry;
-            font-weight: 700;
-            font-size: 18px;
-          }
-          .description{
-            font-size: 14px;
-            font-weight: bold;
-          }
+          opacity: 0;
+          transform: translateX(-110%);
         }
       }
+      &:hover{
+        >img{
+          transform: scale(1.1);
+        }
+        .layout{
+          transition-delay: .5s;
+          opacity: 1;
+          transform: scale(1);
+          i{
+            transition-duration: 1s;
+            transition-delay: 1s;
+            opacity: 1;
+          }
+          .text{
+            opacity: 1;
+            transform: translateX(0%);
+            transition-duration: 1s;
+            transition-delay: 1s;
+            .title{
+              color: $Berry;
+              font-weight: 700;
+              font-size: 18px;
+            }
+            .description{
+              font-size: 16px;
+              @include respond(350){
+                font-size: 14px;
+              }
+              font-weight: bold;
+            }
+          }
+          }
 
-    }
+        }
+      }
   }
 
+  }
+}
+footer{
+  background-image: url('../../public/assets/images/Elegant-Blush-Floral-Beauty-Banner.jpg');
+  background-color: $Cream;
+  @include backGround($p:center,$r:no-repeat,$s:cover);
+  .row{
+    @include respond(350){
+      row-gap: 15px;
     }
+    @include respond(450){
+      row-gap: 25px;
+    }
+    &:not(:last-child){
+      border-right: 10px solid $Berry;
+    }
+    .part{
+       &:nth-of-type(2){
+        border-left: 2px solid #af5d64;
+        border-right: 2px solid #af5d64;
+        @include respond(350){
+          border: none;
+        }
+        @include respond(850){
+          border-left: 2px solid #af5d64;
+          border-right: 2px solid #af5d64;
+        }
+      }
+       .item{
+        height: 100%;
+          @include flex(center,center);
+          text-align: center;
+        img{
+          width: 70%;
+        }
+        .headLine{
+         h4{
+            @include respond(350){
+              font-size: 18px;
+            }
+            @include respond(850){
+              font-size: 15px;
+            }
+          }
+        }
+        p{
+          @include respond(850){
+            font-size: 12px;
+          }
+          @include respond(1050){
+            font-size: 16px;
+          }
+        }
+
+        ul{
+          @include flex(center,center,$cg:10px);
+          li{
+            a{
+              color: $Cream;
+              background-color: #af5d64;
+              display: block;
+              @include flex(center,center);
+              @include distance(50px,50px);
+              font-size: 20px;
+              border-radius: 50%;
+              transition-duration: .5s;
+              @include respond(350){
+                @include distance(35px,35px);
+              }
+              @include respond(1050){
+                @include distance(45px,45px);
+              }
+              &:hover{
+                color: #af5d64;
+                background-color: $Cream;
+
+              }
+            }
+          }
+        }
+        .sing{
+          p{
+            @include respond(350){
+              font-size: 12px;
+            }
+          }
+          h6{
+            font-size: 18px;
+            @include respond(350){
+              font-size: 14px;
+            }
+            @include respond(850){
+              font-size: 12px;
+            }
+             @include respond(1050){
+              font-size: 13px;
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+}
+.popup{
+  overflow: auto;
+  @include position(fixed,0,0,$z:1000);
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  transition-duration: .5s;
+  &.active{
+    @include flex(center,center);
+  }
+  &.show{
+    opacity: 1;
+  }
+  background-color: rgba(53, 27, 40,.5);
+  @include respond(350){
+    display: block;
+  }
+  @include respond(650){
+    display: flex;
+  }
+  .body{
+    margin: auto;
+    position: relative;
+    border-radius: 20px;
+    background-color: #FFF8F2;
+    width: 850px;
+    @include respond(350){
+      width: 320px;
+    }
+    @include respond(650){
+      width: 550px;
+    }
+    @include respond(850){
+      width: 750px;
+    }
+    >.badge{
+      @include flex($ai:center);
+      width: fit-content;
+      background-color: $Dusty-Rose;
+      border-radius: 30px;
+      font-size: 16px;
+      @include position($t:60px,$l:80px);
+      @include respond(350){
+        font-size: 12px;
+        left: 40px;
+      }
+      @include respond(850){
+        left: 80px;
+        font-size: 16px;
+      }
+      cursor: pointer;
+      img{
+        @include distance(30px,30px);
+        @include respond(350){
+          @include distance(20px,20px);
+        }
+        @include respond(850){
+          @include distance(30px,30px);
+        }
+      }
+    }
+    i{
+      cursor: pointer;
+      font-size: 20px;
+      @include flex(center,center);
+      @include position();
+      color: #fff;
+      @include distance(35px,35px);
+      @include respond(350){
+        @include distance(25px,25px);
+        font-size: 14px;
+
+      }
+      border-radius: 50%;
+
+      background-color: $Dusty-Rose;
+      &.exit{
+        top: 15px;
+        right: 15px;
+        @include respond(350){
+          top: 5px;
+          right: 10px;
+        }
+        @include respond(350){
+          top: 15px;
+          right: 10px;
+        }
+      }
+      &.next,
+      &.prev{
+        top:50%;
+        transform: translateY(-50%);
+      }
+      &.next{
+        right: 15px;
+        @include respond(350){
+          right: 10px;
+        }
+      }
+      &.prev{
+        left: 15px;
+        @include respond(350){
+          left: 10px;
+        }
+      }
+    }
+
+    .row{
+      row-gap: 10px;
+      .item{
+        width: 350px;
+        margin-block: 15px;
+        @include flex(center,center);
+        @include respond(350){
+          width: 280px;
+          margin: auto;
+          &:last-child{
+            margin-bottom: 15px;
+          }
+        }
+        img{
+          border-radius: 20px;
+        }
+        .counter,.star{
+          margin-bottom:10px;
+          @include flex(center,center);
+          column-gap: 10px;
+          span:not(.change){
+            border-bottom: $Dusty-Rose 1px solid ;
+            flex-grow: 1;
+          }
+          p{
+            .change{
+              color: $Berry;
+              font-size: 18px;
+            }
+            color: $Dusty-Rose
+          }
+
+          img{
+            @include distance(40px,40px);
+          }
+        }
+        .title{
+          font-size: 35px;
+          color: $Berry;
+          @include respond(350){
+            font-size: 20px;
+          }
+          @include respond(350){
+            font-size: 35px;
+          }
+        }
+        .description{
+          font-size: 20px;
+          color: $Berry;
+          @include respond(350){
+            font-size: 12px;
+          }
+          @include respond(850){
+            font-size: 18px;
+          }
+        }
+        .badge{
+          @include flex($ai:center);
+          width: fit-content;
+          background-color: $Dusty-Rose;
+          border-radius: 30px;
+          font-size: 16px;
+          cursor: pointer;
+          img{
+            @include distance(30px,30px);
+            @include respond(350){
+              @include distance(20px,20px);
+            }
+            @include respond(850){
+              @include distance(30px,30px);
+            }
+          }
+          @include respond(350){
+            font-size: 14px;
+          }
+          @include respond(350){
+            font-size: 16px;
+          }
+
+        }
+      }
+    }
+    ul{
+      border-top: 1px solid $Dusty-Rose;
+      column-gap: 10px;
+      @include respond(350){
+        width: max-content;
+      }
+      @include respond(850){
+        width: 100%;
+      }
+      li{
+        margin-top: 10px;
+        color: $Dusty-Rose;
+        font-size: 20px;
+        @include distance(35px,35px);
+        @include flex(center,center);
+        border-radius: 50%;
+        border: 1px solid  $Dusty-Rose;
+        &.active{
+          background-color: $Dusty-Rose;
+          color: #fff;
+          border:none;
+          box-shadow:
+          rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+          rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+      }
+    }
+  }
 }
